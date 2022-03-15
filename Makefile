@@ -1,5 +1,10 @@
+SHELL=/bin/bash
+CONDA_ENV=pysurv-dist
+CONDA_ACTIVATE=source $$(conda info --base)/etc/profile.d/conda.sh ; conda activate ; conda activate
+CONDA_DEACTIVATE=source $$(conda info --base)/etc/profile.d/conda.sh ; conda deactivate ; conda deactivate
+
 help:
-	@printf "\033[36m%-30s\033[0m %s\n" Geras-NLP
+	@printf "\033[36m%-30s\033[0m %s\n" pysurv-dist
 	@echo ---
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' ./Makefile | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
@@ -18,7 +23,7 @@ install: lint format test  ## Install in active python environment if all checks
 	@python -m pip install .
 
 env: ## Create the development environment in conda
-	@($(conda deactivate); conda env remove -n pysurv-dist)
+	@($(CONDA_DEACTIVATE); conda env remove -n pysurv-dist)
 	@conda env create -f ./environment.yaml
 
 coverage:  ## Run tests using pytest under coverage

@@ -20,9 +20,9 @@ sys.path.insert(0, os.path.abspath(".."))
 
 # -- Project information -----------------------------------------------------
 
-project = "package_name"
-copyright = "2020, Preston Ventures"
-author = "xxxxxx"
+project = "pysurv_dist"
+copyright = "2022, dataseams"
+author = "Dodd, Jacob; Mourad, Sam"
 
 # The full version, including alpha/beta/rc tags
 release = "0.1a"

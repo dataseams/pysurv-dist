@@ -1,7 +1,7 @@
-Welcome to geras-nlp's documentation!
+Welcome to pysurv-dist documentation!
 =====================================
 
-.. automodule:: package_name
+.. automodule:: pysurv_dist
    :members:
 
 .. toctree::
