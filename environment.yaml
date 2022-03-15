@@ -1,0 +1,23 @@
+name: pysurv-dist
+channels:
+  - default
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+    - jupyter  #exp
+    - jupyterlab  #exp
+    - pytest  #dev
+    - pytest-runner  #dev
+    - flake8  #dev
+    - flake8-docstrings  #dev
+    - pep8-naming  #dev
+    - mccabe  #dev
+    - black  #dev
+    - coverage  #dev
+    - sphinx  #dev
+    - pandas  #exp
+    - matplotlib  #exp
+    - tqdm  #exp
+    - click  #prod
