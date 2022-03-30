@@ -1,0 +1,25 @@
+name: Linting
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  flake8-lint:
+    runs-on: ubuntu-latest
+    name: Lint and format
+    steps:
+      - name: Check out source repository
+        uses: actions/checkout@v2
+      - name: Set up Python environment
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10.2"
+      - name: Install linting packages
+        run: pip install black==22.1.0 isort==5.10.1 flake8==4.0.1 \
+          flake8-docstrings==1.6.0 pep8-naming==0.12.1 \
+          click==8.0.4 #locking click version is needed to fix a bug in click 8.1.0
+      - name: Run formatting checks
+        run: make format-check
+      - name: Run linting checks
+        run: make lint

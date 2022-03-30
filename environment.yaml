@@ -2,22 +2,24 @@ name: pysurv-dist
 channels:
   - default
   - conda-forge
+  - sebp
 dependencies:
-  - python=3.10
+  - black #dev
+  - click #prod
+  - coverage #dev
+  - flake8 #dev
+  - flake8-docstrings #dev
+  - isort #dev
+  - jupyter #exp
+  - jupyterlab #exp
+  - matplotlib #exp
+  - mccabe #dev
+  - pandas #exp
+  - pep8-naming #dev
   - pip
-  - pip:
-    - jupyter  #exp
-    - jupyterlab  #exp
-    - pytest  #dev
-    - pytest-runner  #dev
-    - flake8  #dev
-    - flake8-docstrings  #dev
-    - pep8-naming  #dev
-    - mccabe  #dev
-    - black  #dev
-    - coverage  #dev
-    - sphinx  #dev
-    - pandas  #exp
-    - matplotlib  #exp
-    - tqdm  #exp
-    - click  #prod
+  - pytest #dev
+  - pytest-runner #dev
+  - python=3.10
+  - scikit-survival #prod
+  - sphinx #dev
+  - tqdm #exp

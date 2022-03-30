@@ -1,5 +1,6 @@
 """The package setup script."""
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
+
 import requirements
 
 setup(
@@ -9,9 +10,7 @@ setup(
     author="Dodd, Jacob; Mourad, Sam",
     author_email="jacobdodd94@gmail.com;mouradhsam@gmail.com",
     python_requires=">=3.10",
-    packages=find_packages(
-        exclude=["tests", "docs"]
-    ),
+    packages=find_packages(exclude=["tests", "docs"]),
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
         "Intended Audience :: Business Users",
