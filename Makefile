@@ -14,7 +14,8 @@ lint: ## Run a linting check using flake8
 	@python -m flake8
 
 format:  ## Run a formatting check using black
-	@python -m black --check .
+	@python -m isort --settings-path pyproject.toml .
+	@python -m black .
 
 format-check:  ## Run a formatting check using black
 	@python -m isort -c --settings-path pyproject.toml .

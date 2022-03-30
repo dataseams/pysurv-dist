@@ -4,21 +4,22 @@ channels:
   - conda-forge
   - sebp
 dependencies:
-  - black  #dev
-  - click  #prod
-  - coverage  #dev
-  - flake8  #dev
-  - flake8-docstrings  #dev
-  - jupyter  #exp
-  - jupyterlab  #exp
-  - matplotlib  #exp
-  - mccabe  #dev
-  - pandas  #exp
-  - pep8-naming  #dev
+  - black #dev
+  - click #prod
+  - coverage #dev
+  - flake8 #dev
+  - flake8-docstrings #dev
+  - isort #dev
+  - jupyter #exp
+  - jupyterlab #exp
+  - matplotlib #exp
+  - mccabe #dev
+  - pandas #exp
+  - pep8-naming #dev
   - pip
-  - pytest  #dev
-  - pytest-runner  #dev
+  - pytest #dev
+  - pytest-runner #dev
   - python=3.10
-  - scikit-survival  #prod
-  - sphinx  #dev
-  - tqdm  #exp
+  - scikit-survival #prod
+  - sphinx #dev
+  - tqdm #exp
