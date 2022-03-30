@@ -19,3 +19,17 @@ exclude = '''
 
 [tool.coverage.run]
 omit = ['*tests/*']
+
+[tool.coverage.report]
+omit = ["*/tests/*"]
+precision=1
+
+[tool.pytest.ini_options]
+markers = [
+  "model: marks tests as model (deselect with '-m \"not model\"')",
+  "e2e: marks tests as e2e to run in CI pipeline (deselect with '-m \"not e2e\"')"
+]
+
+[tool.isort]
+profile = "black"
+line_length = 79

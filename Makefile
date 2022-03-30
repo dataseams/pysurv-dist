@@ -16,6 +16,10 @@ lint: ## Run a linting check using flake8
 format:  ## Run a formatting check using black
 	@python -m black --check .
 
+format-check:  ## Run a formatting check using black
+	@python -m isort -c --settings-path pyproject.toml .
+	@python -m black --check .
+
 test:  ## Run tests using pytest
 	@python -m pytest
 
