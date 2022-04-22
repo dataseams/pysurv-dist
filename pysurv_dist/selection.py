@@ -82,6 +82,8 @@ class SelectKBest(_BaseFilter):
 
 
 class FeatureReduction:
+    """Feature reduction class."""
+
     def __init__(
         self,
         X: ArrayLike,
