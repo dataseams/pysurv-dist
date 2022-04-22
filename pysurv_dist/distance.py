@@ -4,7 +4,7 @@ from sksurv.utils import Surv
 
 
 def survival_distance_score(X: ArrayLike, y: Surv) -> dict:
-    """Calculation of survival score."""
+    """Calculate survival distance score."""
     pass
 
 

@@ -1,10 +1,11 @@
 [flake8]
 docstring-convention=numpy
+ignore=N803
 exclude=[
     _version.py,
     *tests/*,
     *debug*
 ]
-select=D,N8,C9,E501,F82,N803
+select=D,N8,C9,E501,F82
 max-complexity=5
 max-line-length=79
