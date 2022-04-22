@@ -88,6 +88,17 @@ class FeatureReduction:
         scorer: SelectKBest,
         corr_threshold: float = 0.6,
     ) -> None:
+        """Init feature reduction class.
+
+        Parameters
+        ----------
+        X : ArrayLike
+            Input dataframe.
+        scorer : SelectKBest
+            Scorer object
+        corr_threshold : float, optional
+            Correlation threshold, by default 0.6
+        """
         self.X = X
         self.scorer = scorer  # pull out the feature names and scores
         self.corr_threshold = corr_threshold
