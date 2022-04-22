@@ -2,8 +2,6 @@
 
 Has scoring function and feature selection classes.
 """
-from numpy import Arrayterator
-import pandas as pd
 from numpy.typing import ArrayLike
 from sklearn.feature_selection._univariate_selection import (
     _BaseFilter as _BaseFilterSK,
@@ -35,7 +33,7 @@ def score_function(X: ArrayLike, y: Surv) -> ArrayLike:
     # TODO: validate y, make sure that y has boolean and float/int tuple
     #  using sksurv checks
     sds = survival_distance_score(X, y)
-    ci = clinical_indpendence_score(X)
+    ci = clinical_indpendence_score(X, y)
     combined = combine_sds_ci_scores(sds=sds, ci=ci)
     return combined
 
