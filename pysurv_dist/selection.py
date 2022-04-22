@@ -9,9 +9,9 @@ from sklearn.feature_selection._univariate_selection import (
 from sksurv.utils import Surv
 
 from .distance import (
-    survival_distance_score,
     clinical_indpendence_score,
     combine_sds_ci_scores,
+    survival_distance_score,
 )
 
 
