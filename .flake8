@@ -5,6 +5,6 @@ exclude=[
     *tests/*,
     *debug*
 ]
-select=D,N8,C9,E501,F82
+select=D,N8,C9,E501,F82,N803
 max-complexity=5
 max-line-length=79

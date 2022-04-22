@@ -83,14 +83,18 @@ class SelectKBest(_BaseFilter):
 
 class FeatureReduction:
     def __init__(
-        self, X: ArrayLike, scorer: SelectKBest, corr_threshold: float = 0.6
+        self,
+        X: ArrayLike,
+        scorer: SelectKBest,
+        corr_threshold: float = 0.6,
     ) -> None:
         self.X = X
         self.scorer = scorer  # pull out the feature names and scores
         self.corr_threshold = corr_threshold
 
     def _transform(self):
-        """"""
+        pass
 
     def transform(self):
+        """Combine highly correlated features according to SDSC."""
         pass
