@@ -1,5 +1,6 @@
 [flake8]
 docstring-convention=numpy
+ignore=N803
 exclude=[
     _version.py,
     *tests/*,

@@ -7,7 +7,7 @@ Feature selection in a Survival Analysis (SA) context is more complex than featu
 This is because you have 2 attributes of the target:
 
     - time observed: integer or float
-    - experienced event at end of time observed(censored): boolean
+    - experienced event at end of time observed (censored): boolean
 
 Historically, there are a number of ways that feature selection in a SA context has been done, for example:
 
