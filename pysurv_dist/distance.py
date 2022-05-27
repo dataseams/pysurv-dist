@@ -10,8 +10,8 @@ rate across time given a particular feature.
 """
 import numpy as np
 from numpy.typing import ArrayLike
-from sksurv.util import Surv, check_y_survival
 from sklearn.linear_model import LinearRegression
+from sksurv.util import Surv, check_y_survival
 
 
 def _survival_distance_score(x: ArrayLike, y: Surv) -> float:
