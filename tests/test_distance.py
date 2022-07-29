@@ -1,6 +1,7 @@
 from unittest import TestCase
 from unittest.mock import patch
 
+import numpy as np
 import pandas as pd
 
 from pysurv_dist import distance
@@ -23,11 +24,25 @@ class TestClinicalIndependenceScore(TestCase):
         )
 
     @patch("pysurv_dist.distance._clinical_independence_score")
-    def test_happy_path(self, mock_cg):
-        expected_scores = [1, 2, 3]
+    def test_happy_path_dataframe(self, mock_cg):
+        expected_scores = np.array([1, 2, 3])
         mock_cg.side_effect = expected_scores
         scores = distance.clinical_independence_score(self.data)
-        self.assertEqual(scores, expected_scores)
+        np.testing.assert_array_equal(scores, expected_scores)
+
+    @patch("pysurv_dist.distance._clinical_independence_score")
+    def test_happy_path_array(self, mock_cg):
+        expected_scores = np.array([1, 2, 3])
+        mock_cg.side_effect = expected_scores
+        scores = distance.clinical_independence_score(self.data.values)
+        np.testing.assert_array_equal(scores, expected_scores)
+
+    @patch("pysurv_dist.distance._clinical_independence_score")
+    def test_array_transposed(self, mock_cg):
+        expected_scores = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+        mock_cg.side_effect = expected_scores
+        scores = distance.clinical_independence_score(self.data.values.T)
+        np.testing.assert_array_equal(scores, expected_scores)
 
     def test__clinical_independence_score(self):
         score = distance._clinical_independence_score(

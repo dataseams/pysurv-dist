@@ -8,7 +8,10 @@ The goal of the survival distance score is to measure the variation in survival
 rate across time given a particular feature.
 
 """
+from typing import List
+
 import numpy as np
+import pandas as pd
 from numpy.typing import ArrayLike
 from sklearn.linear_model import LinearRegression
 from sksurv.util import Surv, check_y_survival
@@ -23,23 +26,25 @@ def _survival_distance_score(x: ArrayLike, y: Surv) -> float:
     return score
 
 
-def survival_distance_score(X: ArrayLike, y: Surv) -> dict:
+def survival_distance_score(X: pd.DataFrame, y: Surv) -> dict:
     """Calculate survival distance score."""
     scores = {}
-    for col in X.columns:
+    for col in X:
         scores[col] = _survival_distance_score(X[col], y)
     return scores
 
 
-def _clinical_independence_score(x: ArrayLike, y: ArrayLike) -> float:
+def _clinical_independence_score(x: pd.DataFrame, y: ArrayLike) -> float:
     """Calculate the score for clinical independence.
 
     Parameters
     ----------
     x : ArrayLike
-        All but one attribute
+        Multi-dimensional array, all of the other attributes we are using to
+        assess the independence of y
     y : ArrayLike
-        The attribute values we're fitting the linear regression for
+        One-dimensional array, the attribute values we're fitting
+        the linear regression for
 
     Returns
     -------
@@ -65,6 +70,10 @@ def clinical_independence_score(X: ArrayLike) -> ArrayLike:
     The final result is a 1D array with clinical independence value for each
     feature
 
+    If multi-dimensional array X is a numpy array, then we expect the shape of
+    the array to be [n_rows, n_cols]. If shape is the opposite, the operation
+    will fail.
+
     Parameters
     ----------
     X: ArrayLike
@@ -77,17 +86,67 @@ def clinical_independence_score(X: ArrayLike) -> ArrayLike:
     ArrayLike
         Clinical independence score for column in order of the features given
     """
+    if isinstance(X, pd.DataFrame):
+        X = X.values
+
+    x_transpose = X.T
     scores = [
-        _clinical_independence_score(x=X.drop(col, axis=1), y=X[col])
-        for col in X.columns
+        _clinical_independence_score(
+            x=np.delete(x_transpose, i, 0), y=x_transpose[i]
+        )
+        for i in range(x_transpose.shape[0])
     ]
-    return scores
+    return np.array(scores)
 
 
-def combine_sds_ci_scores(sds: dict, ci: dict, weight: float) -> dict:
-    """Combine clinical independence and survival distance scores."""
-    # check the keys are shared among both sds and ci
+def combine_sds_ci_scores(
+    sds: List[float], ci: List[float], weight: float
+) -> List[float]:
+    """Combine clinical independence and survival distance scores.
 
+    Assume that the clinical independence and survival distance score arrays
+    are in the same order, i.e. element 0 references the same attribute.
+
+    Parameters
+    ----------
+    sds : List[float]
+        Survival distance scores
+    ci : dict
+        Clinical independence scores
+    weight : float
+        How much to weigh the survival distance over the clinical independence
+        score during combination.
+
+    Returns
+    -------
+    List[float]
+        List of combined survival distance and clinical independence scores
+    """
     # combine
-    scores = {}
+    scores = []
     return scores
+
+
+class SurvivalDistanceClinicalIndependenceTransformer:
+    """Apply survival distance scoring and clinical independence scoring."""
+
+    def __init__(
+        self, clinical_weight: float, corr_threshold: float = 0.6
+    ) -> None:
+        self.clinical_weight = clinical_weight
+        self.corr_threshold = corr_threshold
+        self.survival_scores = np.array([])
+        self.clinical_scores = np.array([])
+        self.combined_scores = np.array([])
+
+    def fit(self, df: ArrayLike) -> ArrayLike:
+        """Fit transformer to input data."""
+        pass
+
+    def transform(self, df: ArrayLike) -> ArrayLike:
+        """Transform data by combining correlated columns."""
+        pass
+
+    def fit_transform(self, df: ArrayLike) -> ArrayLike:
+        """Fit and transform input data."""
+        pass
