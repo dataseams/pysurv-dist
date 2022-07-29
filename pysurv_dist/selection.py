@@ -9,7 +9,7 @@ from sklearn.feature_selection._univariate_selection import (
 from sksurv.utils import Surv
 
 from .distance import (
-    clinical_indpendence_score,
+    clinical_independence_score,
     combine_sds_ci_scores,
     survival_distance_score,
 )
@@ -33,7 +33,7 @@ def score_function(X: ArrayLike, y: Surv) -> ArrayLike:
     # TODO: validate y, make sure that y has boolean and float/int tuple
     #  using sksurv checks
     sds = survival_distance_score(X, y)
-    ci = clinical_indpendence_score(X, y)
+    ci = clinical_independence_score(X, y)
     combined = combine_sds_ci_scores(sds=sds, ci=ci)
     return combined
 
